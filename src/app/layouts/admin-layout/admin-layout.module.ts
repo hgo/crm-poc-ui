@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { SalesComponent } from '../../sales/sales.component';
-
 import {
   MatButtonModule,
   MatInputModule,
@@ -14,8 +13,11 @@ import {
   MatTooltipModule,
   MatSelectModule,
   MatStepperModule,
-  MatIconModule
+  MatIconModule,
+  MatCardModule,
+  MatGridListModule
 } from '@angular/material';
+import { NumberDirective } from 'directives/numbers-only.directive';
 @NgModule({
   imports: [
     CommonModule,
@@ -29,11 +31,14 @@ import {
     MatSelectModule,
     MatTooltipModule,
     MatStepperModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatGridListModule
   ],
   declarations: [
     DashboardComponent,
     SalesComponent,
+    NumberDirective
   ]
 })
 

@@ -5,29 +5,69 @@
 				<form [formGroup]="customerSearch" (keydown.enter)="false">
 					<ng-template matStepLabel>Müşteri Seçimi</ng-template>
 					<mat-form-field>
-						<input matInput placeholder="TCKN" formControlName="tckn" required (keyup.enter)="searchCustomer()">
+						<input numbersOnly matInput placeholder="TCKN" maxlength="11" formControlName="tckn" required (keyup.enter)="searchCustomer()" />
 						<mat-icon matSuffix>search</mat-icon>
 					</mat-form-field>
+					<mat-card *ngIf="customer!=null" class="profile-card">
+						<mat-card-header>
+							<div mat-card-avatar class="profile-header-image"></div>
+							<mat-card-title>{{customer.name}}</mat-card-title>
+							<mat-card-subtitle>{{customer.id}}</mat-card-subtitle>
+						</mat-card-header>
+						<mat-card-content>
+							<p>
+								Aktif Müşteri
+							</p>
+						</mat-card-content>
+					</mat-card>
 					<div>
-						<button class="btn btn-danger btn-round" matStepperNext>Sonraki Adım</button>
+						<button *ngIf="customer!=null" class="btn btn-danger btn-round pull-right" matStepperNext>Sonraki Adım</button>
 					</div>
 				</form>
 			</mat-step>
 			<mat-step [stepControl]="productCatalog">
 				<form [formGroup]="productCatalog">
 					<ng-template matStepLabel>Ürün Seçimi</ng-template>
-
+					<mat-grid-list cols="2" rowHeight="2:1">
+						<mat-grid-tile>
+							<mat-card *ngIf="customer!=null" class="product-card">
+								<mat-card-header>
+									<div mat-card-avatar class="product-header-image"></div>
+									<mat-card-title>24 Mbit İnternet</mat-card-title>
+									<mat-card-subtitle>Data</mat-card-subtitle>
+								</mat-card-header>
+								<mat-card-content>
+									<p>
+										Addon
+									</p>
+								</mat-card-content>
+							</mat-card>
+						</mat-grid-tile>
+						<mat-grid-tile>
+							<mat-card *ngIf="customer!=null" class="product-card">
+								<mat-card-header>
+									<div mat-card-avatar class="product-header-image"></div>
+									<mat-card-title>Modem</mat-card-title>
+									<mat-card-subtitle>Cihaz</mat-card-subtitle>
+								</mat-card-header>
+								<mat-card-content>
+									<p>
+										Addon
+									</p>
+								</mat-card-content>
+							</mat-card>
+						</mat-grid-tile>
+					</mat-grid-list>
 					<div>
-						<button class="btn btn-danger btn-round" mat-button matStepperPrevious>Önceki Adım</button>
-						<button class="btn btn-danger btn-round" mat-button matStepperNext>Sonraki Adım</button>
+						<button class="btn btn-danger btn-round pull-left" mat-button matStepperPrevious>Önceki Adım</button>
+						<button class="btn btn-danger btn-round pull-right" mat-button matStepperNext>Sonraki Adım</button>
 					</div>
 				</form>
 			</mat-step>
 			<mat-step>
 				<ng-template matStepLabel>Sipariş</ng-template>
-
 				<div>
-					<button class="btn btn-danger btn-round" mat-button matStepperPrevious>Önceki Adım</button>
+					<button class="btn btn-danger btn-round pull-left" mat-button matStepperPrevious>Önceki Adım</button>
 				</div>
 			</mat-step>
 		</mat-vertical-stepper>

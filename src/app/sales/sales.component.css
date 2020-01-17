@@ -1,0 +1,16 @@
+.profile-card {
+  max-width: 400px;
+}
+
+.profile-header-image {
+  background-image: url("assets/img/profile.png");
+  background-size: cover;
+}
+.product-header-image {
+  background-image: url("assets/img/telecom.png");
+  background-size: cover;
+}
+.product-card {
+  max-width: 300px;
+  width: 300px;
+}

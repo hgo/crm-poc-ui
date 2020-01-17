@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { NgxSoapModule, NgxSoapService } from 'ngx-soap';
-
 import { AppComponent } from './app.component';
 
 
@@ -30,8 +29,7 @@ import { CrmService } from './service/crm.service';
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
-
+    AdminLayoutComponent
   ],
   providers: [CrmService, NgxSoapService],
   bootstrap: [AppComponent]
