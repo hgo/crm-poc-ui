@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CrmService } from 'app/service/crm.service';
 @Component({
     selector: 'app-sales',
     templateUrl: './sales.component.html',
@@ -10,7 +11,7 @@ export class SalesComponent implements OnInit {
     customerSearch: FormGroup;
     productCatalog: FormGroup;
 
-    constructor(private _formBuilder: FormBuilder) { }
+    constructor(private _formBuilder: FormBuilder, private service: CrmService) { }
 
     ngOnInit() {
         this.customerSearch = this._formBuilder.group({
@@ -21,7 +22,8 @@ export class SalesComponent implements OnInit {
         });
     }
     searchCustomer() {
-        alert(this.customerSearch.controls['tckn'].value);
+        // alert(this.customerSearch.controls['tckn'].value);
+        this.service.getCustomer().subscribe(res => console.log(res));
     }
 
 }
