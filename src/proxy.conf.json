@@ -4,7 +4,7 @@
 		"secure": false,
 		"logLevel": "debug"
 	},
-	"/api/*": {
+	"/catalog/*": {
 		"target": "http://ec2-18-217-67-71.us-east-2.compute.amazonaws.com",
 		"secure": false,
 		"logLevel": "debug"

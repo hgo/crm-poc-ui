@@ -5,16 +5,26 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CrmService {
-  private client: Client;
+  private customerClient: Client;
+  private catalogClient: Client;
 
   constructor(private soap: NgxSoapService, private http: HttpClient) {
     this.soap.createClient('assets/customer.wsdl').then(client => {
-      this.client = client;
-      console.log(client);
-
+      this.customerClient = client;
+      console.log(client, 'customerClient');
+    });
+    this.soap.createClient('assets/catalog.wsdl').then(client => {
+      this.catalogClient = client;
+      console.log(client, 'catalogClient');
     });
   }
   getCustomer() {
-    return this.client.call('listCustomers', {});
+    return this.customerClient.call('listCustomers', {});
+  }
+  findCustomer(tckn: number) {
+    return this.customerClient.call('findCustomer', { tckn: tckn });
+  }
+  getOffers() {
+    return this.catalogClient.call('listOffers', {});
   }
 }

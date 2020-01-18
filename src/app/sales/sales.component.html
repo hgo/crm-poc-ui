@@ -1,6 +1,6 @@
 <div class="main-content">
 	<div class="container-fluid">
-		<mat-vertical-stepper [linear]="isLinear" #stepper>
+		<mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="stepChange($event)">
 			<mat-step [stepControl]="customerSearch">
 				<form [formGroup]="customerSearch" (keydown.enter)="false">
 					<ng-template matStepLabel>Müşteri Seçimi</ng-template>
@@ -28,40 +28,34 @@
 			<mat-step [stepControl]="productCatalog">
 				<form [formGroup]="productCatalog">
 					<ng-template matStepLabel>Ürün Seçimi</ng-template>
-					<mat-grid-list cols="2" rowHeight="2:1">
-						<mat-grid-tile>
-							<mat-card *ngIf="customer!=null" class="product-card">
-								<mat-card-header>
-									<div mat-card-avatar class="product-header-image"></div>
-									<mat-card-title>24 Mbit İnternet</mat-card-title>
-									<mat-card-subtitle>Data</mat-card-subtitle>
-								</mat-card-header>
-								<mat-card-content>
-									<p>
-										Addon
-									</p>
-								</mat-card-content>
-							</mat-card>
-						</mat-grid-tile>
-						<mat-grid-tile>
-							<mat-card *ngIf="customer!=null" class="product-card">
-								<mat-card-header>
-									<div mat-card-avatar class="product-header-image"></div>
-									<mat-card-title>Modem</mat-card-title>
-									<mat-card-subtitle>Cihaz</mat-card-subtitle>
-								</mat-card-header>
-								<mat-card-content>
-									<p>
-										Addon
-									</p>
-								</mat-card-content>
-							</mat-card>
-						</mat-grid-tile>
-					</mat-grid-list>
-					<div>
-						<button class="btn btn-danger btn-round pull-left" mat-button matStepperPrevious>Önceki Adım</button>
-						<button class="btn btn-danger btn-round pull-right" mat-button matStepperNext>Sonraki Adım</button>
+					<div class="pt-4 pb-4" fxLayout="row layout-wrap" fxLayoutAlign="space-between">
+						<mat-card *ngFor="let offer of offers" class="product-card">
+							<mat-card-header>
+								<div mat-card-avatar class="product-header-image"></div>
+								<mat-card-title>{{offer.name}}</mat-card-title>
+								<mat-card-subtitle>Data</mat-card-subtitle>
+							</mat-card-header>
+							<mat-card-content>
+								<mat-accordion>
+									<mat-expansion-panel [expanded]="true">
+										<mat-expansion-panel-header>
+											<mat-panel-title>
+												Özellikler
+											</mat-panel-title>
+											<mat-panel-description>
+											</mat-panel-description>
+										</mat-expansion-panel-header>
+										<ng-container *ngFor="let char of offer.offerProperties">
+											{{char.name}} : {{char.value}} <br>
+										</ng-container>
+									</mat-expansion-panel>
+								</mat-accordion>
+							</mat-card-content>
+						</mat-card>
 					</div>
+
+					<button class="btn btn-danger btn-round pull-left" mat-button matStepperPrevious>Önceki Adım</button>
+					<button class="btn btn-danger btn-round pull-right" mat-button matStepperNext>Sonraki Adım</button>
 				</form>
 			</mat-step>
 			<mat-step>

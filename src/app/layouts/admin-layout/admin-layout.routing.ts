@@ -7,4 +7,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: '', redirectTo: 'dashboard' },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'sales', component: SalesComponent },
+    { path: 'assets', component: SalesComponent },
+    { path: 'cc', component: SalesComponent },
+    { path: 'log', component: SalesComponent },
 ];

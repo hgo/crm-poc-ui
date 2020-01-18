@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { SalesComponent } from '../../sales/sales.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatButtonModule,
   MatInputModule,
@@ -15,9 +16,15 @@ import {
   MatStepperModule,
   MatIconModule,
   MatCardModule,
-  MatGridListModule
+  MatGridListModule,
+  MatSnackBarModule,
+  MatExpansionModule,
+  MatProgressSpinnerModule,
+  MatDialogModule
 } from '@angular/material';
 import { NumberDirective } from 'directives/numbers-only.directive';
+import { GlobalService } from 'app/global/global';
+import { LoadingComponent } from 'app/components/loading/loading.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -33,13 +40,21 @@ import { NumberDirective } from 'directives/numbers-only.directive';
     MatStepperModule,
     MatIconModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSnackBarModule,
+    MatExpansionModule,
+    FlexLayoutModule,
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   declarations: [
     DashboardComponent,
     SalesComponent,
-    NumberDirective
-  ]
+    NumberDirective,
+    LoadingComponent
+  ],
+  providers: [GlobalService],
+  entryComponents: [LoadingComponent]
 })
 
 export class AdminLayoutModule { }
