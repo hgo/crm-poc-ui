@@ -11,7 +11,8 @@
   background-size: cover;
 }
 .product-card {
-  max-width: 300px;
-  width: 300px;
-  min-height: auto;
+  margin-bottom: 20px;
+}
+mat-card-title {
+  color: rgb(32, 32, 32) !important;
 }

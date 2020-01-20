@@ -3,6 +3,8 @@ import { NgxSoapService, Client, ISoapMethodResponse } from 'ngx-soap';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { OrderRequest } from 'app/model/orderRequest';
+import { Observable } from 'rxjs';
+import { Order } from 'app/model/order';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,5 +33,8 @@ export class CrmService {
   }
   sendOrder(order: OrderRequest) {
     return this.http.post(environment.orderService, order);
+  }
+  getAssets(customerId: string): Observable<Order[]> {
+    return this.http.get<Order[]>(`${environment.assetService}?customerId=${customerId}`);
   }
 }

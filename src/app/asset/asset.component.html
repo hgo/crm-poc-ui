@@ -1,0 +1,56 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Müşteri Hizmet Sorgulama</h4>
+            <p class="card-category">Müşteri seçimi</p>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field>
+                    <input id="search-input" numbersOnly matInput placeholder="TCKN" name="tckn" maxlength="11" [(ngModel)]="tckn" required (keyup.enter)="searchCustomer()" required />
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="this.assets != null" class="pt-4 pb-4" fxLayout="row layout-wrap" fxLayoutAlign="space-between">
+              <mat-card *ngFor="let asset of assets">
+                <mat-card-header>{{customer.name}}</mat-card-header>
+                <mat-card-subtitle class="text-right">{{asset.status}}</mat-card-subtitle>
+                <mat-card-content>
+                  <mat-card *ngFor="let offer of asset.offers" class="product-card">
+                    <mat-card-header>
+                      <div mat-card-avatar class="product-header-image"></div>
+                      <mat-card-title>{{offer.offerName}}</mat-card-title>
+                      <mat-card-subtitle>{{offer.offerId}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <mat-accordion>
+                        <mat-expansion-panel [expanded]="false">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              Özellikler
+                            </mat-panel-title>
+                            <mat-panel-description>
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <ng-container *ngFor="let char of asset.properties">
+                            {{char.name}} : {{char.value}} <br>
+                          </ng-container>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </mat-card-content>
+                  </mat-card>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

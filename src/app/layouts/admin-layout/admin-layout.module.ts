@@ -25,6 +25,8 @@ import {
 import { NumberDirective } from 'directives/numbers-only.directive';
 import { GlobalService } from 'app/global/global';
 import { LoadingComponent } from 'app/components/loading/loading.component';
+import { AssetComponent } from 'app/asset/aset.component';
+import { CcComponent } from 'app/cc/cc.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -50,6 +52,8 @@ import { LoadingComponent } from 'app/components/loading/loading.component';
   declarations: [
     DashboardComponent,
     SalesComponent,
+    AssetComponent,
+    CcComponent,
     NumberDirective,
     LoadingComponent
   ],

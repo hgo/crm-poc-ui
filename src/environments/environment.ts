@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  orderService: '/order/api/orders'
+  orderService: '/order/api/orders',
+  assetService: '/asset/api/assets'
 };

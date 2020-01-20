@@ -29,7 +29,7 @@ import { CrmService } from './service/crm.service';
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
   ],
   providers: [CrmService, NgxSoapService],
   bootstrap: [AppComponent]
