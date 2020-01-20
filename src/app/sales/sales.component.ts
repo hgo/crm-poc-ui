@@ -4,6 +4,7 @@ import { CrmService } from 'app/service/crm.service';
 import { Customer } from 'app/model/customer';
 import { GlobalService } from 'app/global/global';
 import { Offer } from 'app/model/offer';
+import { OrderRequest } from 'app/model/orderRequest';
 @Component({
     selector: 'app-sales',
     templateUrl: './sales.component.html',
@@ -15,6 +16,8 @@ export class SalesComponent implements OnInit {
     productCatalog: FormGroup;
     customer: Customer;
     offers: Offer[];
+    selectedOffers: Offer[];
+    validOrder = true;
     constructor(private _formBuilder: FormBuilder, private service: CrmService, private global: GlobalService) { }
 
     ngOnInit() {
@@ -56,8 +59,34 @@ export class SalesComponent implements OnInit {
         // previouslySelectedIndex
         if (ev.selectedIndex === 1) {
             // offers
-            this.getOffers();
+            if (this.offers == null) {
+                this.getOffers();
+            }
         }
     }
-
+    selectOffer(offer: Offer) {
+        offer.selected = !offer.selected;
+    }
+    send() {
+        // create order request
+        const selectedOffers = this.offers.filter(o => o.selected);
+        if (this.customer != null && selectedOffers.length > 0) {
+            this.global.showLoading();
+            const orderRequest: OrderRequest = {
+                customerId: this.customer.id,
+                orderLines: this.offers.filter(o => o.selected)
+            };
+            console.log(orderRequest, 'orderRequest');
+            this.service.sendOrder(orderRequest).subscribe(result => {
+                console.log(result, 'send order result');
+                this.global.hideLoading();
+                if (result != null) {
+                    this.global.openSnackBar(`${result['id']} nolu sipariş oluşturulmuştur.`, 'Bigi');
+                    this.validOrder = false;
+                }
+            });
+        } else {
+            this.global.openSnackBar('Sipariş için müşteri ve ürün seçilmelidir !', 'Hata');
+        }
+    }
 }

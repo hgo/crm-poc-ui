@@ -50,18 +50,61 @@
 										</ng-container>
 									</mat-expansion-panel>
 								</mat-accordion>
+								<button [ngClass]="{'btn-success': !offer.selected,'btn-danger':offer.selected}" class="btn btn-success btn-sm btn-round pull-right" (click)="selectOffer(offer)">{{offer.selected == true ? 'Seçimi İptal Et' : 'Seç'}}</button>
 							</mat-card-content>
 						</mat-card>
 					</div>
-
 					<button class="btn btn-danger btn-round pull-left" mat-button matStepperPrevious>Önceki Adım</button>
 					<button class="btn btn-danger btn-round pull-right" mat-button matStepperNext>Sonraki Adım</button>
 				</form>
 			</mat-step>
 			<mat-step>
-				<ng-template matStepLabel>Sipariş</ng-template>
-				<div>
-					<button class="btn btn-danger btn-round pull-left" mat-button matStepperPrevious>Önceki Adım</button>
+				<ng-template matStepLabel>Gözden Geçir</ng-template>
+				<div class="pt-4 pt-b">
+					<mat-card *ngIf="customer!=null" class="profile-card">
+						<mat-card-header>
+							<div mat-card-avatar class="profile-header-image"></div>
+							<mat-card-title>{{customer.name}}</mat-card-title>
+							<mat-card-subtitle>{{customer.id}}</mat-card-subtitle>
+						</mat-card-header>
+						<mat-card-content>
+							<p>
+								Aktif Müşteri
+							</p>
+						</mat-card-content>
+					</mat-card>
+					<div class="pt-4 pb-4" fxLayout="row layout-wrap" fxLayoutAlign="start">
+						<div *ngFor="let offer of offers">
+							<mat-card *ngIf="offer.selected" class="product-card">
+								<mat-card-header>
+									<div mat-card-avatar class="product-header-image"></div>
+									<mat-card-title>{{offer.name}}</mat-card-title>
+									<mat-card-subtitle>Data</mat-card-subtitle>
+								</mat-card-header>
+								<mat-card-content>
+									<mat-accordion>
+										<mat-expansion-panel [expanded]="true">
+											<mat-expansion-panel-header>
+												<mat-panel-title>
+													Özellikler
+												</mat-panel-title>
+												<mat-panel-description>
+												</mat-panel-description>
+											</mat-expansion-panel-header>
+											<ng-container *ngFor="let char of offer.offerProperties">
+												{{char.name}} : {{char.value}} <br>
+											</ng-container>
+										</mat-expansion-panel>
+									</mat-accordion>
+									<button class="btn btn-danger btn-sm btn-round" (click)="selectOffer(offer)">{{offer.selected == true ? 'Seçimi İptal Et' : 'Seç'}}</button>
+								</mat-card-content>
+							</mat-card>
+						</div>
+					</div>
+					<div>
+						<button class="btn btn-danger btn-round pull-left" mat-button matStepperPrevious>Önceki Adım</button>
+						<button *ngIf="validOrder" class="btn btn-success btn-round pull-right" mat-button (click)="send()">Siparişi Başlat</button>
+					</div>
 				</div>
 			</mat-step>
 		</mat-vertical-stepper>

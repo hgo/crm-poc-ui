@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { NgxSoapService, Client, ISoapMethodResponse } from 'ngx-soap';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'environments/environment';
+import { OrderRequest } from 'app/model/orderRequest';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,5 +28,8 @@ export class CrmService {
   }
   getOffers() {
     return this.catalogClient.call('listOffers', {});
+  }
+  sendOrder(order: OrderRequest) {
+    return this.http.post(environment.orderService, order);
   }
 }
