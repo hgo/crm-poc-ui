@@ -16,3 +16,6 @@
   position: absolute;
   width: 260px;
 }
+.card {
+  color: rgb(97, 97, 97) !important;
+}

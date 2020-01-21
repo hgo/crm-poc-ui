@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://ws.crm.turkcell.com.tr/catalog" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.crm.turkcell.com.tr/catalog" targetNamespace="http://ws.crm.turkcell.com.tr/catalog">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ws.crm.turkcell.com.tr/catalog">
+
+      <xs:element name="listOffersRequest">
+        <xs:complexType>
+          <xs:sequence></xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="listOffersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="offers" type="tns:offer" />
+            </xs:sequence>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:complexType name="offer">
+        <xs:sequence>
+          <xs:element name="id" type="xs:string" />
+          <xs:element name="name" type="xs:string" />
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="offerProperties" type="tns:offerProperty" />
+          </xs:sequence>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="offerProperty">
+        <xs:sequence>
+          <xs:element name="id" type="xs:string" />
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="listOffersRequest">
+    <wsdl:part element="tns:listOffersRequest" name="listOffersRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listOffersResponse">
+    <wsdl:part element="tns:listOffersResponse" name="listOffersResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CatalogPort">
+    <wsdl:operation name="listOffers">
+      <wsdl:input message="tns:listOffersRequest" name="listOffersRequest"></wsdl:input>
+      <wsdl:output message="tns:listOffersResponse" name="listOffersResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CatalogPortSoap11" type="tns:CatalogPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="listOffers">
+      <soap:operation soapAction="" />
+      <wsdl:input name="listOffersRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="listOffersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CatalogPortService">
+    <wsdl:port binding="tns:CatalogPortSoap11" name="CatalogPortSoap11">
+      <soap:address location="http://localhost:4200/catalog/ws/catalog" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

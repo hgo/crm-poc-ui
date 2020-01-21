@@ -1,0 +1,22 @@
+{
+	"/order/**": {
+		"target": "http://ec2-18-217-67-71.us-east-2.compute.amazonaws.com",
+		"secure": false,
+		"logLevel": "debug"
+	},
+	"/asset/**": {
+		"target": "http://ec2-18-217-67-71.us-east-2.compute.amazonaws.com",
+		"secure": false,
+		"logLevel": "debug"
+	},
+	"/customer/*": {
+		"target": "http://ec2-18-217-67-71.us-east-2.compute.amazonaws.com",
+		"secure": false,
+		"logLevel": "debug"
+	},
+	"/catalog/*": {
+		"target": "http://ec2-18-217-67-71.us-east-2.compute.amazonaws.com",
+		"secure": false,
+		"logLevel": "debug"
+	}
+}
