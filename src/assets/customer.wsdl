@@ -92,7 +92,7 @@
   </wsdl:binding>
   <wsdl:service name="CustomerPortService">
     <wsdl:port binding="tns:CustomerPortSoap11" name="CustomerPortSoap11">
-      <soap:address location="/customer/ws/customers" />
+      <soap:address location="http://ec2-18-188-112-50.us-east-2.compute.amazonaws.com/customer/ws/customers" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
