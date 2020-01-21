@@ -37,7 +37,7 @@
 								<form [formGroup]="productCatalog">
 									<ng-template matStepLabel>Ürün Seçimi</ng-template>
 									<div class="pt-4 pb-4" fxLayout="row layout-wrap" fxLayoutAlign="space-between">
-										<mat-card *ngFor="let offer of offers" class="product-card">
+										<mat-card *ngFor="let offer of offers;index as i" class="product-card">
 											<mat-card-header>
 												<div mat-card-avatar class="product-header-image"></div>
 												<mat-card-title>{{offer.name}}</mat-card-title>
@@ -58,7 +58,7 @@
 														</ng-container>
 													</mat-expansion-panel>
 												</mat-accordion>
-												<button id="offer-select" [ngClass]="{'btn-success': !offer.selected,'btn-danger':offer.selected}" class="btn btn-success btn-sm btn-round pull-right" (click)="selectOffer(offer)">{{offer.selected == true ? 'Seçimi İptal Et' : 'Seç'}}</button>
+												<button id="offer-select{{i}}" [ngClass]="{'btn-success': !offer.selected,'btn-danger':offer.selected}" class="btn btn-success btn-sm btn-round pull-right" (click)="selectOffer(offer)">{{offer.selected == true ? 'Seçimi İptal Et' : 'Seç'}}</button>
 											</mat-card-content>
 										</mat-card>
 									</div>

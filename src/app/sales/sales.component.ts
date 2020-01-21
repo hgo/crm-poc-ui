@@ -70,6 +70,7 @@ export class SalesComponent implements OnInit {
     send() {
         // create order request
         const selectedOffers = this.offers.filter(o => o.selected);
+        selectedOffers.forEach(x => { x.properties = x.offerProperties; x.offerName = x.name; x.offerId = x.id });
         if (this.customer != null && selectedOffers.length > 0) {
             this.global.showLoading();
             const orderRequest: OrderRequest = {
@@ -81,7 +82,7 @@ export class SalesComponent implements OnInit {
                 console.log(result, 'send order result');
                 this.global.hideLoading();
                 if (result != null) {
-                    this.global.openSnackBar(`${result['id']} nolu sipariş oluşturulmuştur.`, 'Bigi');
+                    this.global.openSnackBar(`${result['id']} nolu sipariş oluşturulmuştur.`, 'Tamam');
                     this.validOrder = false;
                 }
             });

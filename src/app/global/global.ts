@@ -10,7 +10,6 @@ export class GlobalService {
 	}
 	openSnackBar(message: string, action: string) {
 		this._snackBar.open(message, action, {
-			duration: 2000,
 			verticalPosition: 'top'
 		});
 	}
