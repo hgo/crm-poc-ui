@@ -65,7 +65,7 @@
   </wsdl:binding>
   <wsdl:service name="CatalogPortService">
     <wsdl:port binding="tns:CatalogPortSoap11" name="CatalogPortSoap11">
-      <soap:address location="http://localhost:4200/catalog/ws/catalog" />
+      <soap:address location="/catalog/ws/catalog" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

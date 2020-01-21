@@ -92,7 +92,7 @@
   </wsdl:binding>
   <wsdl:service name="CustomerPortService">
     <wsdl:port binding="tns:CustomerPortSoap11" name="CustomerPortSoap11">
-      <soap:address location="http://localhost:4200/customer/ws/customers" />
+      <soap:address location="/customer/ws/customers" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

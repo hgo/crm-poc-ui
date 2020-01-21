@@ -11,7 +11,7 @@ import { OrderRequest } from 'app/model/orderRequest';
     styleUrls: ['./sales.component.css']
 })
 export class SalesComponent implements OnInit {
-    isLinear = false;
+    isLinear = true;
     customerSearch: FormGroup;
     productCatalog: FormGroup;
     customer: Customer;
