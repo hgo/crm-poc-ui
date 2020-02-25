@@ -38,7 +38,11 @@ export class SalesComponent implements OnInit {
             } else {
                 this.global.openSnackBar('Müşteri bulunamadı !', 'Tamam');
             }
-        }
+        },
+            err => {
+                this.global.hideLoading();
+                this.global.openSnackBar('Müşteri bulunamadı !', 'Tamam');
+            }
         );
     }
     getOffers() {
