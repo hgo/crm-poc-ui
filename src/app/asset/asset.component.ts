@@ -28,6 +28,9 @@ export class AssetComponent implements OnInit {
       } else {
         this.global.openSnackBar('Müşteri bulunamadı !', 'Tamam');
       }
+    }, err => {
+      this.global.hideLoading();
+      this.global.openSnackBar('Müşteri bulunamadı !', 'Tamam');
     }
     );
   }
