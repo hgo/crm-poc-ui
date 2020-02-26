@@ -1,22 +1,17 @@
 import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { State } from 'app/model/state';
 // key that is used to access the data in local storage
-const STORAGE_KEY = 'journey';
+const STORAGE_KEY = 'state';
 @Injectable()
 export class LocalStorageService {
-    anotherTodolist = [];
     constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) { }
-    public storeOnLocalStorage(taskTitle: string): void {
-
-        // get array of tasks from local storage
-        const currentTodoList = this.storage.get(STORAGE_KEY) || [];
-        // push new task to array
-        currentTodoList.push({
-            title: taskTitle,
-            isChecked: false
-        });
-        // insert updated array to local storage
-        this.storage.set(STORAGE_KEY, currentTodoList);
+    public setStateData(state: State): void {
+        this.storage.set(STORAGE_KEY, state);
         console.log(this.storage.get(STORAGE_KEY) || 'LocaL storage is empty');
+    }
+    public getStateData() {
+        const data = this.storage.get(STORAGE_KEY) || new State();
+        return data;
     }
 }

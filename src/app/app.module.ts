@@ -14,6 +14,7 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { CrmService } from './service/crm.service';
+import { LocalStorageService } from './service/storage.service';
 
 @NgModule({
   imports: [
@@ -32,7 +33,7 @@ import { CrmService } from './service/crm.service';
     AppComponent,
     AdminLayoutComponent,
   ],
-  providers: [CrmService, NgxSoapService],
+  providers: [CrmService, NgxSoapService, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
