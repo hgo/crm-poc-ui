@@ -50,6 +50,7 @@
     "lodash": "^4.17.15",
     "moment": "2.24.0",
     "ngx-soap": "^0.6.0",
+    "ngx-webstorage-service": "^4.1.0",
     "perfect-scrollbar": "1.1.0",
     "popper.js": "1.15.0",
     "rxjs": "6.5.2",

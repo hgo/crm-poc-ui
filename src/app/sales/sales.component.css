@@ -10,6 +10,10 @@
   background-image: url("assets/img/telecom.png");
   background-size: cover;
 }
+.cart-header-image {
+  background-image: url("assets/img/shopping_cart.png");
+  background-size: cover;
+}
 .product-card {
   margin-bottom: 20px;
 }

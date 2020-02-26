@@ -18,6 +18,7 @@ export class SalesComponent implements OnInit {
     offers: Offer[];
     selectedOffers: Offer[];
     validOrder = true;
+    totalPrice = 0;
     constructor(private _formBuilder: FormBuilder, private service: CrmService, private global: GlobalService) { }
 
     ngOnInit() {
@@ -70,6 +71,19 @@ export class SalesComponent implements OnInit {
     }
     selectOffer(offer: Offer) {
         offer.selected = !offer.selected;
+        this.calculatePrice();
+    }
+    calculatePrice() {
+        const selectedOffers = this.offers.filter(o => o.selected);
+        let price = 0;
+        selectedOffers.forEach(x => {
+            x.offerProperties.forEach(y => {
+                if (y.name == 'Fiyat') {
+                    price += parseInt(y.value);
+                }
+            })
+        });
+        this.totalPrice = price;
     }
     send() {
         // create order request

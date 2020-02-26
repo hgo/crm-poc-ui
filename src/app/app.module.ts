@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { NgxSoapModule, NgxSoapService } from 'ngx-soap';
 import { AppComponent } from './app.component';
-
+import { StorageServiceModule } from 'ngx-webstorage-service';
 
 import {
   AgmCoreModule
@@ -17,6 +17,7 @@ import { CrmService } from './service/crm.service';
 
 @NgModule({
   imports: [
+    StorageServiceModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
